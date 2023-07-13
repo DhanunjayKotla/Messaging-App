@@ -1,6 +1,13 @@
 var timer, chatsgroupsstate, cropper, usrgrppro;
 var groupusers = [];
-var audio = new Audio("images/NotificationTone.mp3");
+
+var vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
 
 $(function () {
     getnormalchats()
@@ -511,7 +518,6 @@ function displaynotification(msg) {
     $('.notificationbox').animate({ opacity: 1 }, 1200, function () {
         $(this).delay(2000).animate({ opacity: 0 }, 300);
     })
-    audio.play()
 }
 
 function displaymsg(result) {
