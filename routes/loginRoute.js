@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const user = await User.findOne({ phone: req.body.phone })
+    const user = await User.findOne({ phone: req.body.phone.replace(/ /g, '') })
     if (user && user.password === req.body.password) {
         res.cookie('user', user, { httpOnly: true });
         res.redirect('/')
