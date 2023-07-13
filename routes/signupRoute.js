@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    req.body.phone = req.body.phone.replace(/ /g, '');
     const userexist = await User.findOne({ phone: req.body.phone });
     if (userexist) {
         var payload = req.body;
