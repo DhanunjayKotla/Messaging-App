@@ -679,6 +679,8 @@ input::placeholder{
     .container{
         background-color: black;
         display: block;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
     }
     .messages{
         display: none;
@@ -734,6 +736,9 @@ input::placeholder{
     .searchbox input{
         margin-left: 10px;
     }
+    .phoneback{
+        display: block;
+    }
 }
 @media only screen and (max-width: 420px) {
     .chats{
@@ -780,8 +785,8 @@ input::placeholder{
         font-size: 0.9rem;
     }
 }
-@media only screen and (max-width: 1000px) {
+/* @media only screen and (max-width: 1000px) {
     .restrict{
         display: flex;
     }
-}
+} */
