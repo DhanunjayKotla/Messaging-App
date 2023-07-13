@@ -39,7 +39,7 @@ input::placeholder{
     margin: 0;
 }
 .signupForm, .loginForm{
-    width: 40%;
+    width: max-content;
     padding: 10px;
     margin: auto;
     display: flex;
@@ -48,7 +48,7 @@ input::placeholder{
 }
 .signupForm input, .loginForm input{
     height: 40px;
-    width: 80%;
+    width: 400px;
     border: 0;
     border-bottom: 2px solid #075E54;
     margin: 5px;
@@ -682,6 +682,10 @@ input::placeholder{
         height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
     }
+    .optioncontainer, .signupBox, .loginBox{
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+    }
     .messages{
         display: none;
         height: 100%;
@@ -784,9 +788,8 @@ input::placeholder{
         padding: 5px;
         font-size: 0.9rem;
     }
-}
-/* @media only screen and (max-width: 1000px) {
-    .restrict{
-        display: flex;
+    .signupForm input, .loginForm input{
+        width: 200px;
     }
-} */
+}
+
