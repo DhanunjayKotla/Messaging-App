@@ -1,0 +1,18 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Login
+  <link rel="shortcut icon" type="image/png" href="images/icon.png">
+  link(rel='stylesheet' href='css/styles.css')
+.loginBox
+  form.loginForm(action='' method='post')
+    h1 Welcome back
+    p #{errormsg}
+    input(type='text' placeholder='Phone' name='phone' value=phone)
+    input(type='password' placeholder='Password' name='password' value='')
+    input(type='submit' value='Login' class='sbtbtn')
+    span
+      | Dont have an account? 
+      a(href='/signup') Sign up

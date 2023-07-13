@@ -1,0 +1,51 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title whatsapp
+  <link rel="shortcut icon" type="image/png" href="images/icon.png">
+  link(rel='stylesheet' href='css/styles.css')
+  link(rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css')
+  link(rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css')
+  link(rel='preconnect' href='https://fonts.googleapis.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+  link(href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap' rel='stylesheet')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.css')
+.container
+  .chats
+    .navbar
+      .profilePic
+        img(src=userloggedin.profilepic, alt='')
+      .iconOptions
+        i.fi.fi-br-users-alt.groupbuttonicon
+        i.fi.fi-br-comment-alt.chatsbuttonicon
+        i.fi.fi-br-search.searchbuttonicon
+        i.fi.fi-br-menu-dots-vertical
+    .tabs
+      .chatstab Chats
+        span.notebadge
+      .grouptab Groups
+        span.notebadge  
+    .chatscontainer
+    .optioncontainer
+  .messages
+    img(src='images/intropage.png')
+  .picuploadpop
+    .popupbox
+      .crossbtn
+        i.fi.fi-br-cross-small.cross
+      .imgcontainer
+        img#profileimg(src="", alt="")
+      .okbtn
+        i.fi.fi-br-check
+  .loading
+    img(src=`../../images/loading.gif` alt='')
+script.
+    var userloggedin = !{userloggedinJs}
+script(src='https://code.jquery.com/jquery-3.7.0.min.js' integrity='sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.js')
+script(src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous")
+script(type="text/JavaScript" src = "https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js")
+script(src='js/socket.js')
+script(src='js/index.js')
