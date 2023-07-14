@@ -5,6 +5,10 @@ const fs = require('fs');
 const path = require('path');
 const Chat = require('../../schemas/chatSchema');
 
+const firebase = require("firebase/app")
+const firebasestorage = require("firebase/storage");
+const config = require("../../firebaseconfig")
+
 firebase.initializeApp(config);
 const storage = firebasestorage.getStorage();
 const whitelist = [
