@@ -3,8 +3,26 @@ const mongoose = require('mongoose')
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-const upload = multer({ dest: 'uploads/' })
 const Chat = require('../../schemas/chatSchema');
+
+firebase.initializeApp(config);
+const storage = firebasestorage.getStorage();
+const whitelist = [
+    'image/png',
+    'image/jpeg',
+    'image/jpg',
+    'image/webp'
+]
+const upload = multer({
+    storage: multer.memoryStorage(),
+    fileFilter: (req, file, cb) => {
+        if (!whitelist.includes(file.mimetype)) {
+            console.log('hii')
+            return cb(new Error('file is not allowed'))
+        }
+        cb(null, true)
+    }
+}).single('croppedImage');
 
 const router = express.Router();
 
@@ -74,18 +92,32 @@ router.post('/', async (req, res) => {
 
 })
 
-router.post('/profilePicture', upload.single('croppedImage'), (req, res) => {
-    console.log(req.file);
-    var filepath = `/public/uploads/${req.file.filename}.png`;
-    var temppath = req.file.path;
-    var targetpath = path.join(__dirname, `../../${filepath}`)
-    fs.rename(temppath, targetpath, async err => {
-        if (err) {
-            console.log(err.message);
-            return res.sendStatus(400)
+router.post('/profilePicture', (req, res) => {
+    upload(req, res, async function (err) {
+        if (err instanceof multer.MulterError) {
+            alert(`${err.message}. Refresh page!`);
+        } else {
+            try {
+                const dateTime = giveCurrentDateTime();
+                const storageRef = firebasestorage.ref(storage, `files/${req.file.originalname + " " + dateTime}`);
+                const metadata = {
+                    contentType: req.file.mimetype,
+                };
+                const snapshot = await firebasestorage.uploadBytesResumable(storageRef, req.file.buffer, metadata);
+                const downloadURL = await firebasestorage.getDownloadURL(snapshot.ref);
+                res.send(downloadURL);
+            } catch (err) {
+                console.log(err)
+            }
         }
-        res.send(`uploads/${req.file.filename}.png`);
     })
 })
+const giveCurrentDateTime = () => {
+    const today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date + ' ' + time;
+    return dateTime;
+}
 
 module.exports = router
