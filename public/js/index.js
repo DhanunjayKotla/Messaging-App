@@ -157,6 +157,7 @@ $('.okbtn').click(function () {
                 success: result => {
                     $('.picuploadpop').toggle()
                     $('.setgroupprofile img').attr('src', result);
+                    $('.loading').css({ display: 'none' });
                 }
             })
         }
@@ -370,6 +371,8 @@ $('.optioncontainer').on('click', '.tickicon', async function () {
     if (window.innerWidth < 990) {
         $('.messages').css({ display: 'flex' })
         $('.chats').toggle()
+    }else {
+        $('.grouptab').click()
     }
     $('.back').click()
 })
